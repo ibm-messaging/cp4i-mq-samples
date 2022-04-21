@@ -1,0 +1,13 @@
+*.key
+*.sth
+*.kdb
+*.crl
+*.rdb
+*.crt
+*.yaml
+*.p12
+*.jks
+ccdt.json
+.DS_Store
+*temp*
+*cookie*

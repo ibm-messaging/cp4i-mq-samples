@@ -138,4 +138,4 @@ These examples were tested on [IBM Cloud](https://cloud.ibm.com). On other cloud
 
 [11-rest-tls](./11-rest-tls) is similar to the previous example, with clients authenticating with a TLS certificate instead of userid and password.
 
-[12-rest-oken](./12-rest-token) shows how clients can obtain a token for authentication.
+[12-rest-token](./12-rest-token) shows how clients can obtain a token for authentication.

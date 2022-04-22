@@ -42,7 +42,7 @@ To run these examples, you need:
 
 * MQI Client
 
-  * If using Mac: [MQ MacOS Toolkit](https://developer.ibm.com/components/ibm-mq/tutorials/mq-macos-dev/)
+  * If using Mac: [MQ MacOS Toolkit](https://developer.ibm.com/tutorials/mq-macos-dev/)
   
   * If using Linux/Windows: [MQ Redistributable Clients](https://www.ibm.com/links?url=https%3A%2F%2Fibm.biz%2Fmq92redistclients)
 

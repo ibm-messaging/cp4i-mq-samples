@@ -18,15 +18,20 @@ To test the connections, the examples use:
 
 * Examples 09 to 12: `curl`.
 
-These examples are based on Callum Jackson's [A number of demonstrations/labs for IBM MQ in the Cloud Pak for Integration](https://github.ibm.com/CALLUMJ/MQonCP4I). **I want to thank Callum for his help and guidance when producing this repository.**
+## Acknowledgment
 
-Max Kahan wrote a set of tutorials on MQ and TLS that include using Java/JMS. They are not based on OpenShift/CP4I, but will give you a very good understanding of MQ and TLS:
+**I want to thank Callum Jackson, from MQ Development, for his help and guidance when producing this repository.**
+
+## Further reading
+
+Max Kahan wrote a set of tutorials on MQ and TLS. They are not based on OpenShift/CP4I, but will give you a very good understanding of the subject:
 
 * [Secure communication between IBM MQ endpoints with TLS](https://developer.ibm.com/tutorials/mq-secure-msgs-tls/)
 
 * [Configuring mutual TLS authentication for a messaging application](https://developer.ibm.com/tutorials/configuring-mutual-tls-authentication-java-messaging-app/).
 
 ## Disclaimer
+
 The main aim of this repository is to make the process of connecting to MQ on CP4I easy to learn and understand. Because of that, the way the instructions and scripts are structured is not optimised, and there's a lot of redundancy.
 
 For example, all `deploy...` scripts create a private key and a certificate for the queue manager. The scripts could invoke another that takes the necessary arguments. The resulting, more efficient structure, would be harder to understand, so I opted for scripts that don't call other scripts.

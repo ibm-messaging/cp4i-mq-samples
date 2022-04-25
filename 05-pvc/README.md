@@ -1,6 +1,6 @@
 # Example: Persistent Storage
 
-In all the previous examples, the queue manager's storage was `ephemeral`. This ment that, even if messages were persistent, they would not survive a queue manager (pod) restart, because the queue manager's storage itself did not persist. This is clearly not acceptable for a Production queue manager.
+In all the previous examples, the queue manager's storage was `ephemeral`. This meant that, even if messages were persistent, they would not survive a queue manager (pod) restart, because the queue manager's storage itself did not persist. This is clearly not acceptable for a production queue manager.
 
 This example makes the queue manager's storage persistent; it uses Persistent Volume Claims.
 

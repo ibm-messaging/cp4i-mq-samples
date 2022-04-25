@@ -517,6 +517,9 @@ mqrc 2035
 We can get more details from the log:
 ```
 oc logs qm4-ibm-mq-0 --tail=5
+```
+You should see:
+```
 ...
 2021-08-04T14:24:29.610Z AMQ8077W: Entity 'app1' has insufficient authority to access object Q1 [queue]. [CommentInsert1(app1), CommentInsert2(Q1 [queue]), CommentInsert3(get)]
 ```
@@ -524,6 +527,9 @@ oc logs qm4-ibm-mq-0 --tail=5
 Also, from `AMQERR01.LOG`:
 ```
 oc exec qm4-ibm-mq-0 -- tail /var/mqm/qmgrs/QM4/errors/AMQERR01.LOG
+```
+You should see:
+```
 AMQ8077W: Entity 'app1' has insufficient authority to access object Q1 [queue].
 
 EXPLANATION:

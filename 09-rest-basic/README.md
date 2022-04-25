@@ -447,7 +447,7 @@ xdg-open https://$rest_hostname/ibmmq/console
 ```
 The browser will complain about an untrusted certificate; accept it.
 
-**Note:** Chrome will display "Your connection is not private" and refuse to accept the MQ Console's self-signed certificate.** To accept the certificate and open the Console, type 'thisisunsafe'.
+**Note:** Chrome will display "Your connection is not private" and refuse to accept the MQ Console's self-signed certificate. To accept the certificate and open the Console, type `thisisunsafe`.
 
 You'll be presented with the login screen. Login with `mqadmin` and `passw0rd`.
 

@@ -142,6 +142,8 @@ runmqakm -cert -details -db app1key.kdb -stashed -label qm1cert
 
 ### Configure TLS Certificates for Queue Manager
 
+We create a kubernetes secret with the queue manager's certificate and private key. The secret will be used, when creating the queue manager, to populate the queue manager's key database. 
+
 ```
 oc create secret tls example-01-qm1-secret -n cp4i --key="qm1.key" --cert="qm1.crt"
 
@@ -377,7 +379,7 @@ Setting the environment variable `MQSNOAUT=yes` disables user authentication (cl
           - tls.crt
 ```
 
-The `pki` section points to the secret containing the queue manager's certificate and private key.
+The `pki` section points to the secret (created earlier) containing the queue manager's certificate and private key.
 
 #### Create the queue manager
 

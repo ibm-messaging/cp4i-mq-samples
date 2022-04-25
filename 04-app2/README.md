@@ -592,6 +592,9 @@ Sample AMQSPUT0 end
 We can get more details from the log:
 ```
 oc logs qm4-ibm-mq-0 --tail=5
+```
+You should see:
+```
 ...
 2021-08-04T14:37:00.713Z AMQ8077W: Entity 'app2' has insufficient authority to access object Q1 [queue]. [CommentInsert1(app2), CommentInsert2(Q1 [queue]), CommentInsert3(put)]
 ```
@@ -602,7 +605,7 @@ oc exec qm4-ibm-mq-0 -- tail /var/mqm/qmgrs/QM4/errors/AMQERR01.LOG
 
 ```
 
-You'll see:
+You should see:
 ```
 AMQ8077W: Entity 'app2' has insufficient authority to access object Q1 [queue].
 

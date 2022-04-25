@@ -19,7 +19,7 @@ git clone https://github.ibm.com/EGarza/cp4i-mq.git
 ```
 
 ```
-cd cp4i-mq/06-ha
+cd cp4i-mq/06-native-ha
 
 ```
 
@@ -373,13 +373,6 @@ cat qm6-qmgr.yaml
 ```
 This is a Native HA queue manager.
 
-* License
-```
-    license: L-RJON-C7QG3S
-```
-
-In this version (`9.2.4.0-r1`) the license for a Native HA queue manager must be `L-RJON-C7QG3S`.
-
 * Storage
 ```
     storage:
@@ -614,7 +607,7 @@ message <Message 391>
 message <Message 392>
 ```
 
-The applications reconnected, in this case, within 4 seconds.
+The applications reconnected, in this case, within 8 seconds.
 
 If we check the pods, we'll see that there is a new active instance:
 ```

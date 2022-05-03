@@ -73,7 +73,7 @@ Before running these examples, open a terminal and login to the OpenShift cluste
 
 To implement the examples, follow the `README.md` found on each folder. Copy/paste the commands shown to a terminal session.
 
-Instead of performing copy/paste of individual commands, you also run the scripts provided in each folder:
+Instead of performing copy/paste of individual commands, you can run the scripts provided in each folder:
 
 `deploy-qm<x>-qmgr.sh` to set up and deploy the queue manager.
 

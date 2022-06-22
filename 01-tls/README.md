@@ -1,6 +1,6 @@
 # Example: Configuring one-way TLS
 
-Even with all security disabled, an MQ client cannot access a queue manager on CP4I without  at least one-way TLS.
+Even with all security disabled, an MQ client cannot access a queue manager on CP4I without at least one-way TLS.
 
 This example shows how to set up one-way TLS and deploy a queue manager to OpenShift. To test, we use the MQ sample clients `amqsputc` and `amqsgetc` to put and get messages from a queue.
 

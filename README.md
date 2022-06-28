@@ -91,11 +91,13 @@ Instead of performing copy/paste of individual commands, you can run the scripts
 
 # Assumptions
 
-You installed the MQ Operator in an OpenShift project / Kubernetes namespace called `cp4i`. If that is not the case, perform these global changes:
+You installed the **Cloud Pak for Integration** and **MQ** Operators in an OpenShift project / Kubernetes namespace called `cp4i`. If that is not the case, perform these global changes:
 
 * Change all instances of `-n cp4i` to `-n <your namespace>`
 
 * Change all instances of `Namespace:		cp4i` to `Namespace:		<your namespace>`
+
+You created an instance of the Platform Navigator. This is necessary because these examples create queue managers with the Web Server enabled.
 
 These examples were tested on [IBM Cloud](https://cloud.ibm.com). On other clouds:
 

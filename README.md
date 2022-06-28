@@ -97,7 +97,7 @@ You installed the **Cloud Pak for Integration** and **MQ** Operators in an OpenS
 
 * Change all instances of `Namespace:		cp4i` to `Namespace:		<your namespace>`
 
-You created an instance of the Platform Navigator. This is necessary because these examples create queue managers with the Web Server enabled.
+You created an instance of **Platform Navigator**. This is necessary because these examples create queue managers with the Web Server enabled.
 
 These examples were tested on [IBM Cloud](https://cloud.ibm.com). On other clouds:
 

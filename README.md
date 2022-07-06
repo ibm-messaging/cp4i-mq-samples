@@ -52,7 +52,7 @@ To run these examples, you need:
 
 * For the MQ REST API: `curl` (if not present, download it from https://curl.se/download.html).
 
-* The CP4I MQ Operator installed on OpenShift.
+* The CP4I and MQ Operators installed on OpenShift.
 
 These examples were tested on MacOS and Red Hat Linux (RHEL8), with CP4I running on [IBM Cloud](https://cloud.ibm.com).
 

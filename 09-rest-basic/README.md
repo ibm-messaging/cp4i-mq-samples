@@ -306,15 +306,15 @@ There are similarities and differences between this queue manager and, for examp
 
 * Both queue managers give permission to a user, `app1`, to connect to the queue manager and put to/get from Q1. On `qm3`, the clients connect to a Server Connection channel, and authenticate by presenting a TLS certificate. On this queue manager, the client authenticates with userid and password, presented in a basic HTTP header.
 
-* On all previous queue examples, the queue manager was created with:
+* Same as on all previous examples, the queue manager was created with:
 ```
   web:
-    enabled: true
+    enabled: false
 ```
 
-With this setting, Console and REST access to the queue manager is provided by the IBM Nginx service in CP4I (Service: `ibm-nginx-svc`, Route: `cpd`).
+With this setting, there is no MQ Web Console.
 
-On this queue manager, we have:
+On this queue manager, we add:
 ```
         - env:
             - name: MQ_ENABLE_EMBEDDED_WEB_SERVER
@@ -322,11 +322,8 @@ On this queue manager, we have:
           ports:
             - containerPort: 9443
               protocol: TCP
-...
-  web:
-    enabled: false
 ```
-REST clients access an embedded Web Server in the container. This server listens on port 9443 (see above, where we create a service for this) and provides Console and REST support. Below we'll see how to access the MQ Console on this queue manager.
+REST clients access an embedded Web Server in the container. This server listens on port 9443 (see above, where we create a service for this) and provides MQ Web Console and REST support. Below we'll see how to access the MQ Web Console on this queue manager.
 
 * Configuration file (`mqwebuser.xml`)
 

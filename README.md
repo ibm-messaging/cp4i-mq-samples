@@ -52,7 +52,7 @@ To run these examples, you need:
 
 * For the MQ REST API: `curl` (if not present, download it from https://curl.se/download.html).
 
-* The CP4I and MQ Operators installed on OpenShift.
+* The MQ Operator installed on OpenShift.
 
 These examples were tested on MacOS and Red Hat Linux (RHEL8), with CP4I running on [IBM Cloud](https://cloud.ibm.com).
 
@@ -69,7 +69,7 @@ I haven't tested this extensively on Windows, but most commands shown here shoul
 
 # Instructions
 
-Before running these examples, open a terminal and login to the OpenShift cluster where you installed Cloud Pak for integration and the MQ Operator.
+Before running these examples, open a terminal and login to the OpenShift cluster where you installed the MQ Operator.
 
 To implement the examples, follow the `README.md` found on each folder. Copy/paste the commands shown to a terminal session.
 
@@ -91,13 +91,11 @@ Instead of performing copy/paste of individual commands, you can run the scripts
 
 # Assumptions
 
-* You installed the **Cloud Pak for Integration** and **MQ** Operators in an OpenShift project / Kubernetes namespace called `cp4i`. If that is not the case, perform these global changes:
+* You installed the MQ Operator in an OpenShift project / Kubernetes namespace called `cp4i`. If that is not the case, perform these global changes:
 
   * Change all instances of `-n cp4i` to `-n <your namespace>`
 
   * Change all instances of `Namespace:		cp4i` to `Namespace:		<your namespace>`
-
-* You created an instance of **Platform Navigator**. This is necessary because these examples create queue managers with the Web Server enabled.
 
 * These examples were tested on [IBM Cloud](https://cloud.ibm.com). On other clouds:
 

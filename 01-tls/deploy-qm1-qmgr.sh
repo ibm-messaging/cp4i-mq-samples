@@ -94,7 +94,7 @@ spec:
           name: qmgr
   version: 9.2.4.0-r1
   web:
-    enabled: true
+    enabled: false
   pki:
     keys:
       - name: example

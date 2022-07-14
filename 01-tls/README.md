@@ -294,7 +294,7 @@ spec:
           name: qmgr
   version: 9.2.4.0-r1
   web:
-    enabled: true
+    enabled: false
   pki:
     keys:
       - name: example
@@ -365,6 +365,15 @@ The above points to the configmap with MQSC statements we created earlier. The M
 ```
 
 Setting the environment variable `MQSNOAUT=yes` disables user authentication (clients don't have to provide userid and password when connecting, and user authority to access resources is not checked). In CP4I, non-production queue managers have this setting by default.
+
+* MQ Web Console:
+
+```
+  web:
+    enabled: false
+```
+
+In Cloud Pak for Integration, the MQ Web Console is accessed from Platform Navigator. We are using the minimum configuration needed to run a queue manager, so are setting this to `enabled: false`. If you enable this setting to use the MQ Web Console, you must install the Cloud Pak for Integration operator and create an instance of Platform Navigator. 
 
 * Queue manager key and certificate:
 

@@ -13,12 +13,12 @@ Open a terminal and login to the OpenShift cluster where you installed the CP4I 
 Clone this repository and navigate to this directory:
 
 ```
-git clone https://github.ibm.com/EGarza/cp4i-mq.git
+git clone https://github.com/ibm-messaging/cp4i-mq-samples.git
 
 ```
 
 ```
-cd cp4i-mq/01-tls
+cd cp4i-mq-samples/01-tls
 
 ```
 

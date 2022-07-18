@@ -2,7 +2,7 @@
 
 This example is a variation on [10-rest-idpw](../10-rest-idpw). Instead of authenticating requests with userid and password, users obtain a token at login, which they use on subsequent calls.
 
-For details, see [Using token-based authentication with the REST API](https://www.ibm.com/docs/en/ibm-mq/9.2?topic=security-using-token-based-authentication-rest-api) in the MQ documentation.
+For details, see [Using token-based authentication with the REST API](https://www.ibm.com/docs/en/ibm-mq/9.3?topic=security-using-token-based-authentication-rest-api) in the MQ documentation.
 
 ## Preparation
 
@@ -217,7 +217,7 @@ metadata:
 spec:
   license:
     accept: true
-    license: L-RJON-C7QG3S
+    license: L-RJON-CD3JKX
     use: NonProduction
   queueManager:
     name: QM12
@@ -234,7 +234,7 @@ spec:
     storage:
       queueManager:
         type: ephemeral
-  version: 9.2.4.0-r1
+  version: 9.3.0.0-r1
   template:
     pod:
       containers:

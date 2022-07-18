@@ -179,7 +179,7 @@ In this example, the passwords are encoded:
     <user name="mqreader" password="{hash}ATAAAAAIGH/rX4J8t/JAAAAAIJyjgH3qpIZ115Lj1lWJ6ds7Pyw2T8ri5pfB+PFqPohV"/>
 ```
 
-The process for encoding passwords is documented in [Configuring a basic registry for the IBM MQ Console and REST API](https://www.ibm.com/docs/en/ibm-mq/9.2?topic=roles-configuring-basic-registry-mq-console-rest-api) and [securityUtility command](https://www.ibm.com/docs/en/was-liberty/base?topic=applications-securityutility-command).
+The process for encoding passwords is documented in [Configuring a basic registry for the IBM MQ Console and REST API](https://www.ibm.com/docs/en/ibm-mq/9.3?topic=roles-configuring-basic-registry-mq-console-rest-api) and [securityUtility command](https://www.ibm.com/docs/en/was-liberty/base?topic=applications-securityutility-command).
 
 The password was encoded using this command:
 ```
@@ -304,7 +304,7 @@ metadata:
 spec:
   license:
     accept: true
-    license: L-RJON-C7QG3S
+    license: L-RJON-CD3JKX
     use: NonProduction
   queueManager:
     name: QM10
@@ -321,7 +321,7 @@ spec:
     storage:
       queueManager:
         type: ephemeral
-  version: 9.2.4.0-r1
+  version: 9.3.0.0-r1
   template:
     pod:
       containers:

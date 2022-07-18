@@ -243,7 +243,7 @@ metadata:
 spec:
   license:
     accept: true
-    license: L-RJON-C7QG3S
+    license: L-RJON-CD3JKX
     use: NonProduction
   queueManager:
     name: QM8
@@ -260,7 +260,7 @@ spec:
     storage:
       queueManager:
         type: ephemeral
-  version: 9.2.4.0-r1
+  version: 9.3.0.0-r1
   web:
     enabled: false
   pki:

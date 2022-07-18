@@ -4,7 +4,7 @@ Even with all security disabled, an MQ client cannot access a queue manager on C
 
 This example shows how to set up one-way TLS and deploy a queue manager to OpenShift. To test, we use the MQ sample clients `amqsputc` and `amqsgetc` to put and get messages from a queue.
 
-Source: This is based on https://www.ibm.com/docs/en/ibm-mq/9.2?topic=manager-example-configuring-tls
+Source: This is based on https://www.ibm.com/docs/en/ibm-mq/9.3?topic=manager-example-configuring-tls
 
 ## Preparation
 
@@ -194,7 +194,7 @@ oc apply -n cp4i -f qm1-configmap.yaml
 
 MQ Clients use [Server Name Indication](https://datatracker.ietf.org/doc/html/rfc3546#section-3.1) (SNI) to connect to queue managers on OpenShift. This requires a route with a host name in the form `<lowercase channel name>.chl.mq.ibm.com`. We create that route below.
 
-It is easier to only use uppercase letters and numbers for the channel name. This makes the route's host name easier to determine. Other characters are converted according to rules described [here](https://www.ibm.com/docs/en/ibm-mq/9.2?topic=requirements-how-mq-provides-multiple-certificates-capability).
+It is easier to only use uppercase letters and numbers for the channel name. This makes the route's host name easier to determine. Other characters are converted according to rules described [here](https://www.ibm.com/docs/en/ibm-mq/9.3?topic=requirements-how-mq-provides-multiple-certificates-capability).
 
 For example:
 
@@ -273,7 +273,7 @@ metadata:
 spec:
   license:
     accept: true
-    license: L-RJON-C7QG3S
+    license: L-RJON-CD3JKX
     use: NonProduction
   queueManager:
     name: QM1
@@ -292,7 +292,7 @@ spec:
             - name: MQSNOAUT
               value: 'yes'
           name: qmgr
-  version: 9.2.4.0-r1
+  version: 9.3.0.0-r1
   web:
     enabled: false
   pki:
@@ -314,7 +314,7 @@ cat qm1-qmgr.yaml
 * Version:
 
 ```
-  version: 9.2.4.0-r1
+  version: 9.3.0.0-r1
 
 ```
 
@@ -326,23 +326,23 @@ oc get sub -n cp4i
 
 In this case, the result is (formatted for readbility; your output may differ):
 ```
-NAME                                                      PACKAGE   SOURCE                CHANNEL
+NAME                                          PACKAGE   SOURCE                CHANNEL
 ...
-ibm-mq-v1.7-ibm-operator-catalog-openshift-marketplace    ibm-mq    ibm-operator-catalog  v1.7
+ibm-mq                                        ibm-mq    ibm-operator-catalog  v2.0
 ```
 
-See [Release history for IBM MQ Operator](https://www.ibm.com/docs/en/ibm-mq/9.2?topic=openshift-release-history-mq-operator) for a list of MQ versions supported by each MQ Operator version.
+See [Version support for the IBM MQ Operator](https://www.ibm.com/docs/en/ibm-mq/9.3?topic=operator-version-support-mq) for a list of MQ versions supported by this MQ Operator version.
 
 * License:
 
 ```
   license:
     accept: true
-    license: L-RJON-C7QG3S
+    license: L-RJON-CD3JKX
     use: NonProduction
 ```
 
-The license is correct for the MQ version. If you are installing a different MQ version, you'll find the correct license in [Licensing reference for mq.ibm.com/v1beta1](https://www.ibm.com/docs/en/ibm-mq/9.2?topic=mqibmcomv1beta1-licensing-reference).
+The license is correct for the MQ version. If you are installing a different MQ version, you'll find the correct license in [Licensing reference for mq.ibm.com/v1beta1](https://www.ibm.com/docs/en/ibm-mq/9.3?topic=mqibmcomv1beta1-licensing-reference).
 
 * MQSC statements:
 
@@ -438,7 +438,7 @@ ping -c 3 $qmhostname
 
 The CCDT tells the client where the queue manager is (host and port), the channel name, and the TLS cipher (encryption and signing algorithms) to use.
 
-For details, see [Configuring a JSON format CCDT](https://www.ibm.com/docs/en/ibm-mq/9.2?topic=tables-configuring-json-format-ccdt).
+For details, see [Configuring a JSON format CCDT](https://www.ibm.com/docs/en/ibm-mq/9.3?topic=tables-configuring-json-format-ccdt).
 
 ```
 cat > ccdt.json << EOF
@@ -480,7 +480,7 @@ cat ccdt.json
             },
 ```
 
-The above enables TLS on the connection. It sets a cipher specification (`ANY_TLS12_OR_HIGHER`) that negotiates the highest level of security that the remote end will allow but will only connect using a TLS 1.2 or higher protocol. For details, see [Enabling CipherSpecs](https://www.ibm.com/docs/en/ibm-mq/9.2?topic=messages-enabling-cipherspecs).
+The above enables TLS on the connection. It sets a cipher specification (`ANY_TLS12_OR_HIGHER`) that negotiates the highest level of security that the remote end will allow but will only connect using a TLS 1.2 or higher protocol. For details, see [Enabling CipherSpecs](https://www.ibm.com/docs/en/ibm-mq/9.3?topic=messages-enabling-cipherspecs).
 
 ### Export environment variables
 

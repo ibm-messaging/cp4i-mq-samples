@@ -56,7 +56,7 @@ To run these examples, you need:
 
 These examples were tested on MacOS and Red Hat Linux (RHEL8), with CP4I running on [IBM Cloud](https://cloud.ibm.com).
 
-The examples should work on other clouds, but you will need to change the storage class when running with persistent storage ([Persistent Volume Claims](../05-pvc) and [Native HA](../06-native-ha) examples).
+The examples should work on other clouds, but you will need to change the storage class when running with persistent storage ([Persistent Volume Claims](./05-pvc) and [Native HA](./06-native-ha) examples).
 
 ***Note:*** at the time of writing, the [MQ Explorer example](./06-mqx) doesn't work on MacOS.
 

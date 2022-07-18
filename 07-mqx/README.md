@@ -191,7 +191,7 @@ cat qm7-configmap.yaml
     SET AUTHREC PROFILE('**') OBJTYPE(TOPIC)    PRINCIPAL('mqx1') AUTHADD(ALLADM, CRT, ALLMQI)
 ```
 
-These commands give user `mqx1` full administrative rights. They are based on the `setmqaut` commands documented in [Granting full administrative access to all resources on a queue manager](https://www.ibm.com/docs/en/ibm-mq/9.2?topic=grar-granting-full-administrative-access-all-resources-queue-manager).
+These commands give user `mqx1` full administrative rights. They are based on the `setmqaut` commands documented in [Granting full administrative access to all resources on a queue manager](https://www.ibm.com/docs/en/ibm-mq/9.3?topic=grar-granting-full-administrative-access-all-resources-queue-manager).
 
 #### Create the config map
 
@@ -248,7 +248,7 @@ metadata:
 spec:
   license:
     accept: true
-    license: L-RJON-C7QG3S
+    license: L-RJON-CD3JKX
     use: NonProduction
   queueManager:
     name: QM7
@@ -265,7 +265,7 @@ spec:
     storage:
       queueManager:
         type: ephemeral
-  version: 9.2.4.0-r1
+  version: 9.3.0.0-r1
   web:
     enabled: false
   pki:

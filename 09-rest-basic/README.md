@@ -6,7 +6,7 @@ For information about the MQ REST API, see:
 
 * IBM Developer article: [Get started with the IBM MQ messaging REST API](https://developer.ibm.com/tutorials/mq-develop-mq-rest-api/).
 
-* IBM Documentation: [Getting started with the messaging REST API](https://www.ibm.com/docs/en/ibm-mq/9.2?topic=api-getting-started-messaging-rest).
+* IBM Documentation: [Getting started with the messaging REST API](https://www.ibm.com/docs/en/ibm-mq/9.3?topic=api-getting-started-messaging-rest).
 
 ## Preparation
 
@@ -252,7 +252,7 @@ metadata:
 spec:
   license:
     accept: true
-    license: L-RJON-C7QG3S
+    license: L-RJON-CD3JKX
     use: NonProduction
   queueManager:
     name: QM9
@@ -269,7 +269,7 @@ spec:
     storage:
       queueManager:
         type: ephemeral
-  version: 9.2.4.0-r1
+  version: 9.3.0.0-r1
   template:
     pod:
       containers:
@@ -302,7 +302,7 @@ cat qm9-qmgr.yaml
 ```
 #### Notes:
 
-There are similarities and differences between this queue manager and, for example, `qm3` (see [03-auth](./03-auth)):
+There are similarities and differences between this queue manager and, for example, `qm3` (see [03-auth](../03-auth)):
 
 * Both queue managers give permission to a user, `app1`, to connect to the queue manager and put to/get from Q1. On `qm3`, the clients connect to a Server Connection channel, and authenticate by presenting a TLS certificate. On this queue manager, the client authenticates with userid and password, presented in a basic HTTP header.
 

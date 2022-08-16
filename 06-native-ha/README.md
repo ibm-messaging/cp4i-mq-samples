@@ -612,9 +612,8 @@ The applications reconnected, in this case, within 8 seconds.
 If we check the pods, we'll see that there is a new active instance:
 ```
 oc get pod -n cp4i | grep qm6
-
 ```
-You'll see, for example:
+
 ```
 qm6-ibm-mq-0            0/1     Running
 qm6-ibm-mq-1            1/1     Running

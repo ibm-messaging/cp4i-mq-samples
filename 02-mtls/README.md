@@ -317,7 +317,7 @@ spec:
             - name: MQSNOAUT
               value: 'yes'
           name: qmgr
-  version: 9.3.0.0-r1
+  version: 9.3.0.0-r2
   web:
     enabled: false
   pki:

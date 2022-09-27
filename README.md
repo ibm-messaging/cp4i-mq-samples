@@ -22,6 +22,8 @@ To test the connections, the examples use:
 
 **I want to thank Callum Jackson, from MQ Development, for his help and guidance when producing this repository.**
 
+**Thanks also to Arnauld Desprets, IBM Integration Architect, for reviewing this repository and providing insightful feedback.**
+
 ## Further reading
 
 Max Kahan wrote a set of tutorials on MQ and TLS. They are not based on OpenShift/CP4I, but will give you a very good understanding of the subject:
@@ -29,6 +31,8 @@ Max Kahan wrote a set of tutorials on MQ and TLS. They are not based on OpenShif
 * [Secure communication between IBM MQ endpoints with TLS](https://developer.ibm.com/tutorials/mq-secure-msgs-tls/)
 
 * [Configuring mutual TLS authentication for a messaging application](https://developer.ibm.com/tutorials/configuring-mutual-tls-authentication-java-messaging-app/).
+
+* [TLS for Beginners and more](https://github.com/ADesprets/TLS) is an excellent introduction to the fundamentals of Encryption and TLS.
 
 ## Disclaimer
 

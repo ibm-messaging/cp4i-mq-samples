@@ -18,7 +18,7 @@ To test the connections, the examples use:
 
 * Examples 09 to 12: `curl`.
 
-## Acknowledgment
+## Acknowledgments
 
 **I want to thank Callum Jackson, from MQ Development, for his help and guidance when producing this repository.**
 

@@ -53,7 +53,7 @@ openssl req -newkey rsa:2048 -nodes -keyout app1.key -subj "/CN=app1" -x509 -day
 ```
 This creates two files:
 
-* Privaye key: `app1.key`
+* Private key: `app1.key`
 
 * Certificate: `app1.crt`
 

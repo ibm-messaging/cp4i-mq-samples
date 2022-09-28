@@ -47,7 +47,7 @@ openssl req -newkey rsa:2048 -nodes -keyout qm1.key -subj "/CN=qm1" -x509 -days 
 ```
 This creates two files:
 
-* Privaye key: `qm1.key`
+* Private key: `qm1.key`
 
 * Certificate: `qm1.crt`
 

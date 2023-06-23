@@ -41,6 +41,8 @@ The main aim of this repository is to make the process of connecting to MQ on CP
 
 For example, all `deploy...` scripts create a private key and a certificate for the queue manager. The scripts could invoke another that takes the necessary arguments. The resulting, more efficient structure, would be harder to understand, so I opted for scripts that don't call other scripts.
 
+These samples are provided "AS IS", with no warranty of any kind.
+
 # Prerequisites
 
 To run these examples, you need:

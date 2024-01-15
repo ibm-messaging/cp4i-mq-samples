@@ -64,6 +64,8 @@ else
     ls -l $MQSSLKEYR.*
 fi
 
+export MQCLNTCF=$(pwd)/client.ini
+
 # Put messages to the queue
 
 echo "Test message 1" | amqsputc Q1 QM1

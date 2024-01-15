@@ -64,6 +64,8 @@ else
     ls -l $MQSSLKEYR.*
 fi
 
+export MQCLNTCF=$(pwd)/client.ini
+
 # Get messages from the queue
 
 amqsbcgc Q1 QM1

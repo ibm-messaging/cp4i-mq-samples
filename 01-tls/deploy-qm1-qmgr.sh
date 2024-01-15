@@ -51,26 +51,6 @@ EOF
 
 oc apply -n cp4i -f qm1-configmap.yaml
 
-# Create the required route for SNI
-
-cat > qm1chl-route.yaml << EOF
-apiVersion: route.openshift.io/v1
-kind: Route
-metadata:
-  name: example-01-qm1-route
-spec:
-  host: qm1chl.chl.mq.ibm.com
-  to:
-    kind: Service
-    name: qm1-ibm-mq
-  port:
-    targetPort: 1414
-  tls:
-    termination: passthrough
-EOF
-
-oc apply -n cp4i -f qm1chl-route.yaml
-
 # Deploy the queue manager
 
 cat > qm1-qmgr.yaml << EOF

@@ -22,4 +22,4 @@ rm qm1chl-route.yaml
 oc delete -n cp4i secret example-01-qm1-secret
 
 # delete files
-rm qm1.crt qm1.key app1key.* ccdt.json
+rm qm1.crt qm1.key app1key.* ccdt.json app.pem

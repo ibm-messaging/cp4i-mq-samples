@@ -49,12 +49,20 @@ EOF
 # Set environment variables for the client
 
 export MQCCDTURL=ccdt.json
-export MQSSLKEYR=app1key
+
 # check:
 echo MQCCDTURL=$MQCCDTURL
 ls -l $MQCCDTURL
-echo MQSSLKEYR=$MQSSLKEYR
-ls -l $MQSSLKEYR.*
+
+if [[ $(uname -m) == 'arm64' ]]; then
+    export MQSSLKEYR=$(pwd)/app.pem
+    echo MQSSLKEYR=$MQSSLKEYR
+    ls -l $MQSSLKEYR
+else
+    export MQSSLKEYR=app1key
+    echo MQSSLKEYR=$MQSSLKEYR
+    ls -l $MQSSLKEYR.*
+fi
 
 # Get messages from the queue
 

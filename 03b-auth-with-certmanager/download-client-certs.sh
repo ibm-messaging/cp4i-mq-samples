@@ -15,7 +15,8 @@ tmp=$(mktemp -d)
 mkdir -p ${tmp}/mq-certs
 cd ${tmp}/mq-certs
 
-echo "CLIENT_CERTIFICATE_SECRET=${QMNAME}-cert-client"
+CLIENT_CERTIFICATE_SECRET=${QMNAME}-cert-client
+echo "CLIENT_CERTIFICATE_SECRET=${CLIENT_CERTIFICATE_SECRET}"
 oc get -n ${NAMESPACE} secret $CLIENT_CERTIFICATE_SECRET -o json | jq -r '.data["ca.crt"]' | base64 --decode > ca.crt
 oc get -n ${NAMESPACE} secret $CLIENT_CERTIFICATE_SECRET -o json | jq -r '.data["tls.crt"]' | base64 --decode > tls.crt
 oc get -n ${NAMESPACE} secret $CLIENT_CERTIFICATE_SECRET -o json | jq -r '.data["tls.key"]' | base64 --decode > tls.key

@@ -65,7 +65,6 @@ else
     echo MQSSLKEYR=$MQSSLKEYR
     ls -l $MQSSLKEYR.*
 fi
-MQCONNX failed with CompCode:2, Reason:2393
 export MQCLNTCF=$(pwd)/client.ini
 
 # Get messages from the queue

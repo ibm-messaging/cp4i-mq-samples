@@ -38,6 +38,13 @@ runmqakm -cert -import -target app1key.kdb -file app1.p12 -target_stashed -pw pa
 
 runmqakm -cert -list -db app1key.kdb -stashed
 
+
+# TODO
+cat qm2.crt > trust.pem
+
+openssl pkcs12 -in app1.p12 -out app.pem -password pass:password -noenc
+
+
 # Create TLS Secret for the Queue Manager
 
 oc create secret tls example-02-qm2-secret -n cp4i --key="qm2.key" --cert="qm2.crt"

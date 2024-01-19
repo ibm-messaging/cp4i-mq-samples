@@ -49,12 +49,24 @@ EOF
 # Set environment variables for the client
 
 export MQCCDTURL=ccdt.json
-export MQSSLKEYR=app1key
+
 # check:
 echo MQCCDTURL=$MQCCDTURL
 ls -l $MQCCDTURL
-echo MQSSLKEYR=$MQSSLKEYR
-ls -l $MQSSLKEYR.*
+
+if [[ $(uname -m) == 'arm64' ]]; then
+    export MQSSLTRUSTSTORE=$(pwd)/trust.pem
+    export MQSSLKEYR=$(pwd)/app.pem
+    # export MQSSLKEYRPWD=password
+    echo MQSSLKEYR=$MQSSLKEYR
+    ls -l $MQSSLKEYR
+else
+    export MQSSLKEYR=app1key
+    echo MQSSLKEYR=$MQSSLKEYR
+    ls -l $MQSSLKEYR.*
+fi
+MQCONNX failed with CompCode:2, Reason:2393
+export MQCLNTCF=$(pwd)/client.ini
 
 # Get messages from the queue
 

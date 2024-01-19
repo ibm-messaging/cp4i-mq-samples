@@ -11,23 +11,23 @@
 
 openssl req -newkey rsa:2048 -nodes -keyout qm1.key -subj "/CN=qm1" -x509 -days 3650 -out qm1.crt
 
-if [[ $(uname -m) == 'arm64' ]]; then
-  # Copy the queue manager certificate into a pem for the client
-  cat qm1.crt > app.pem
-else
-  # Create the client key database:
+# Copy the queue manager certificate into a pem for the client
+cat qm1.crt > app.pem
+cp app.pem /Users/danielpink/Documents/git/cp4i/cp4i-navigator-operator
 
-  runmqakm -keydb -create -db app1key.kdb -pw password -type cms -stash
+# Create the client key database:
 
-  # Add the queue manager public key to the client key database:
+runmqakm -keydb -create -db app1key.kdb -pw password -type cms -stash
 
-  runmqakm -cert -add -db app1key.kdb -label qm1cert -file qm1.crt -format ascii -stashed
+# Add the queue manager public key to the client key database:
 
-  # Check. List the database certificates:
+runmqakm -cert -add -db app1key.kdb -label qm1cert -file qm1.crt -format ascii -stashed
 
-  runmqakm -cert -list -db app1key.kdb -stashed
-fi
+# Check. List the database certificates:
 
+runmqakm -cert -list -db app1key.kdb -stashed
+cp app1key.kdb /Users/danielpink/Documents/git/cp4i/cp4i-navigator-operator
+cp app1key.sth /Users/danielpink/Documents/git/cp4i/cp4i-navigator-operator
 
 
 

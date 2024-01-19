@@ -28,9 +28,9 @@ else
     # Create .kdb/.sth files
 
     openssl pkcs12 -export -out application.p12 -inkey tls.key -in tls.crt -passout pass:password
-    runmqckm -keydb -create -db application.kdb -pw password -type cms -stash
-    runmqckm -cert -add -db application.kdb -file ca.crt -stashed
-    runmqckm -cert -import -file application.p12 -pw password -type pkcs12 -target application.kdb -target_pw password -target_type cms -label "1" -new_label aceclient
+    runmqakm -keydb -create -db application.kdb -pw password -type cms -stash
+    runmqakm -cert -add -db application.kdb -file ca.crt -stashed
+    runmqakm -cert -import -file application.p12 -pw password -type pkcs12 -target application.kdb -target_pw password -target_type cms -label "1" -new_label aceclient
     ls -al
     rm ca.crt tls.crt tls.key application.pem application.p12 application.rdb
     ls -al

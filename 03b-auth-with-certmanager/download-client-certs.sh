@@ -10,11 +10,6 @@
 NAMESPACE=cp4i
 QMNAME=qmadmin
 
-echo "Create and move to a temporary dir"
-tmp=$(mktemp -d)
-mkdir -p ${tmp}/mq-certs
-cd ${tmp}/mq-certs
-
 CLIENT_CERTIFICATE_SECRET=${QMNAME}-cert-client
 echo "CLIENT_CERTIFICATE_SECRET=${CLIENT_CERTIFICATE_SECRET}"
 oc get -n ${NAMESPACE} secret $CLIENT_CERTIFICATE_SECRET -o json | jq -r '.data["ca.crt"]' | base64 --decode > ca.crt
@@ -30,8 +25,8 @@ else
 
     openssl pkcs12 -export -out application.p12 -inkey tls.key -in tls.crt -passout pass:password
     runmqakm -keydb -create -db application.kdb -pw password -type cms -stash
-    runmqakm -cert -add -db application.kdb -file ca.crt -stashed
-    runmqakm -cert -import -file application.p12 -pw password -type pkcs12 -target application.kdb -target_pw password -target_type cms -label "1" -new_label aceclient
+    runmqakm -cert -add -db application.kdb -label qm1cert -file ca.crt -format ascii -stashed
+    runmqakm -cert -import -target application.kdb -file application.p12 -target_stashed -pw password -new_label aceclient
     ls -al
     rm ca.crt tls.crt tls.key application.pem application.p12 application.rdb
     ls -al

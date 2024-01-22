@@ -57,6 +57,7 @@ echo MQCCDTURL=$MQCCDTURL
 ls -l $MQCCDTURL
 echo MQSSLKEYR=$MQSSLKEYR
 ls -l $MQSSLKEYR.*
+export MQCLNTCF=$(pwd)/client.ini
 
 # Get messages from the queue
 

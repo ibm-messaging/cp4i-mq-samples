@@ -21,8 +21,10 @@ oc get -n ${NAMESPACE} secret $CLIENT_CERTIFICATE_SECRET -o json | jq -r '.data[
 
 # Different for Mac arm
 if [[ $(uname -m) == 'arm64' ]]; then
-    # Create pem file
-    echo "TODO!!!"
+    echo "Cannot currently get mutual TLS working on Mac arm64."
+    echo "In theory it should just be a case of putting the ca.crt and tls.crt into a pem and using it, but cannot get that working."
+    echo "See https://community.ibm.com/community/user/integration/blogs/soheel-chughtai1/2023/03/28/messaging-on-apple-silicon"
+    exit 1
 else
     # Create .kdb/.sth files
     echo "Create application.p12"

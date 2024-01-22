@@ -21,6 +21,9 @@ if [[ $(uname -m) == 'arm64' ]]; then
     # Create pem file
     echo "TODO!!!"
 else
+    # Ensure we start fresh
+    rm -f ca.crt tls.crt tls.key application.*
+
     # Create .kdb/.sth files
     echo "Create application.p12"
     openssl pkcs12 -export -out application.p12 -inkey tls.key -in tls.crt -passout pass:password
@@ -32,12 +35,10 @@ else
     runmqakm -cert -add -db application.kdb -file ca.crt -stashed
 
     echo "Add p12 to kdb"
-#    runmqakm -cert -import -file application.p12 -pw password -type pkcs12 -target application.kdb -target_pw password -target_type cms -label "1" -new_label aceclient
     label=ibmwebspheremq`id -u -n`
     echo "Setting label to: ${label}"
     runmqakm -cert -import -target application.kdb -file application.p12 -target_stashed -pw password -new_label $label
 
-    ls -al
-    rm ca.crt tls.crt tls.key application.pem application.p12 application.rdb
-    ls -al
+    echo "Tidying up intermediate files"
+    rm -f ca.crt tls.crt tls.key application.pem application.p12 application.rdb
 fi

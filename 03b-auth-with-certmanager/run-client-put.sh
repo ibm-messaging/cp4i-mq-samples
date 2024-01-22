@@ -61,6 +61,6 @@ export MQCLNTCF=$(pwd)/client.ini
 
 # Put messages to the queue
 
-echo "Test message 1" | amqsputc Q1 QM3
-echo "Test message 2" | amqsputc Q1 QM3
+echo "Test message 1" | amqsputc Q1 ${QMNAME}
+echo "Test message 2" | amqsputc Q1 ${QMNAME}
 

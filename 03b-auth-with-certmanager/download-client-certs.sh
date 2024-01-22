@@ -10,6 +10,9 @@
 NAMESPACE=cp4i
 QMNAME=qmadmin
 
+# Ensure we start fresh
+rm -f ca.crt tls.crt tls.key application.*
+
 CLIENT_CERTIFICATE_SECRET=qm-${QMNAME}-client
 echo "CLIENT_CERTIFICATE_SECRET=${CLIENT_CERTIFICATE_SECRET}"
 oc get -n ${NAMESPACE} secret $CLIENT_CERTIFICATE_SECRET -o json | jq -r '.data["ca.crt"]' | base64 --decode > ca.crt
@@ -21,9 +24,6 @@ if [[ $(uname -m) == 'arm64' ]]; then
     # Create pem file
     echo "TODO!!!"
 else
-    # Ensure we start fresh
-    rm -f ca.crt tls.crt tls.key application.*
-
     # Create .kdb/.sth files
     echo "Create application.p12"
     openssl pkcs12 -export -out application.p12 -inkey tls.key -in tls.crt -passout pass:password

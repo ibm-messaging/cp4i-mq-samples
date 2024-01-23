@@ -51,7 +51,7 @@ EOF
 # Set environment variables for the client
 
 export MQCCDTURL=ccdt.json
-export MQSSLKEYR=application
+export MQSSLKEYR=app1
 # check:
 echo MQCCDTURL=$MQCCDTURL
 ls -l $MQCCDTURL

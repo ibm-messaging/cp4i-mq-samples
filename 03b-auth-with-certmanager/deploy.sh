@@ -21,8 +21,26 @@ metadata:
   name: qm-${QMNAME}-queues
 data:
   myqm.mqsc: |
-    SET CHLAUTH('MTLS.SVRCONN') TYPE(SSLPEERMAP) SSLPEER('CN=${NAMESPACE}.${IA_NAME},OU=my-team') USERSRC(MAP) MCAUSER('app1') ACTION(REPLACE)
+    SET CHLAUTH('MTLS.SVRCONN') TYPE(SSLPEERMAP) SSLPEER('CN=app1,OU=${NAMESPACE}.${QMNAME}') USERSRC(MAP) MCAUSER('app1') ACTION(REPLACE)
     SET AUTHREC PRINCIPAL('app1') OBJTYPE(QMGR) AUTHADD(CONNECT,INQ)
+
+    SET CHLAUTH('MTLS.SVRCONN') TYPE(SSLPEERMAP) SSLPEER('CN=cp4iadmin,OU=${NAMESPACE}.${QMNAME}') USERSRC(MAP) MCAUSER('cp4iadmin') ACTION(REPLACE)
+    SET AUTHREC PROFILE('*') PRINCIPAL('cp4iadmin') OBJTYPE(AUTHINFO) AUTHADD(ALL)
+    SET AUTHREC PROFILE('*') PRINCIPAL('cp4iadmin') OBJTYPE(CHANNEL) AUTHADD(ALL)
+    SET AUTHREC PROFILE('*') PRINCIPAL('cp4iadmin') OBJTYPE(CLNTCONN) AUTHADD(ALL)
+    SET AUTHREC PROFILE('*') PRINCIPAL('cp4iadmin') OBJTYPE(COMMINFO) AUTHADD(ALL)
+    SET AUTHREC PROFILE('*') PRINCIPAL('cp4iadmin') OBJTYPE(LISTENER) AUTHADD(ALL)
+    SET AUTHREC PROFILE('*') PRINCIPAL('cp4iadmin') OBJTYPE(NAMELIST) AUTHADD(ALL)
+    SET AUTHREC PROFILE('*') PRINCIPAL('cp4iadmin') OBJTYPE(PROCESS) AUTHADD(ALL)
+    SET AUTHREC PROFILE('*') PRINCIPAL('cp4iadmin') OBJTYPE(QUEUE) AUTHADD(ALL)
+    SET AUTHREC PRINCIPAL('cp4iadmin') OBJTYPE(QMGR) AUTHADD(ALL)
+    SET AUTHREC PROFILE('*') PRINCIPAL('cp4iadmin') OBJTYPE(RQMNAME) AUTHADD(ALL)
+    SET AUTHREC PROFILE('*') PRINCIPAL('cp4iadmin') OBJTYPE(SERVICE) AUTHADD(ALL)
+    SET AUTHREC PROFILE('*') PRINCIPAL('cp4iadmin') OBJTYPE(TOPIC) AUTHADD(ALL)
+
+    DEFINE QLOCAL('Q1') DEFPSIST(YES) BOTHRESH(5) REPLACE
+    SET AUTHREC PROFILE('Q1') PRINCIPAL('app1') OBJTYPE(QUEUE) AUTHADD(BROWSE,GET,INQ,PUT)
+
     REFRESH SECURITY
 ---
 apiVersion: integration.ibm.com/v1beta1
@@ -60,13 +78,28 @@ spec:
 apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
-  name: qm-${QMNAME}-client
+  name: qm-${QMNAME}-app1-client
 spec:
-  commonName: ${NAMESPACE}.${IA_NAME}
+  commonName: app1
   subject:
     organizationalUnits:
-    - my-team
-  secretName: qm-${QMNAME}-client
+    - ${NAMESPACE}.${QMNAME}
+  secretName: qm-${QMNAME}-app1-client
+  issuerRef:
+    name: qm-${QMNAME}-issuer
+    kind: Issuer
+    group: cert-manager.io
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: qm-${QMNAME}-cp4iadmin-client
+spec:
+  commonName: cp4iadmin
+  subject:
+    organizationalUnits:
+    - ${NAMESPACE}.${QMNAME}
+  secretName: qm-${QMNAME}-cp4iadmin-client
   issuerRef:
     name: qm-${QMNAME}-issuer
     kind: Issuer

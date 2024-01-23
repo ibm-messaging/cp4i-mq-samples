@@ -9,12 +9,18 @@
 
 NAMESPACE=cp4i
 QMNAME=qmadmin
+USER=app1
+
+if [[ $# > 0 ]]; then
+    USER=$1
+fi
 
 # Ensure we start fresh
 rm -f ca.crt tls.crt tls.key application.*
 
-CLIENT_CERTIFICATE_SECRET=qm-${QMNAME}-client
+CLIENT_CERTIFICATE_SECRET=qm-${QMNAME}-${USER}-client
 echo "CLIENT_CERTIFICATE_SECRET=${CLIENT_CERTIFICATE_SECRET}"
+
 oc get -n ${NAMESPACE} secret $CLIENT_CERTIFICATE_SECRET -o json | jq -r '.data["ca.crt"]' | base64 --decode > ca.crt
 oc get -n ${NAMESPACE} secret $CLIENT_CERTIFICATE_SECRET -o json | jq -r '.data["tls.crt"]' | base64 --decode > tls.crt
 oc get -n ${NAMESPACE} secret $CLIENT_CERTIFICATE_SECRET -o json | jq -r '.data["tls.key"]' | base64 --decode > tls.key
@@ -27,20 +33,20 @@ if [[ $(uname -m) == 'arm64' ]]; then
     exit 1
 else
     # Create .kdb/.sth files
-    echo "Create application.p12"
-    openssl pkcs12 -export -out application.p12 -inkey tls.key -in tls.crt -passout pass:password
+    echo "Create ${USER}.p12"
+    openssl pkcs12 -export -out ${USER}.p12 -inkey tls.key -in tls.crt -passout pass:password
 
     echo "Create empty kdb"
-    runmqakm -keydb -create -db application.kdb -pw password -type cms -stash
+    runmqakm -keydb -create -db ${USER}.kdb -pw password -type cms -stash
 
     echo "Add ca to kdb"
-    runmqakm -cert -add -db application.kdb -file ca.crt -stashed
+    runmqakm -cert -add -db ${USER}.kdb -file ca.crt -stashed
 
     echo "Add p12 to kdb"
     label=ibmwebspheremq`id -u -n`
     echo "Setting label to: ${label}"
-    runmqakm -cert -import -target application.kdb -file application.p12 -target_stashed -pw password -new_label $label
+    runmqakm -cert -import -target ${USER}.kdb -file ${USER}.p12 -target_stashed -pw password -new_label $label
 
     echo "Tidying up intermediate files"
-    rm -f ca.crt tls.crt tls.key application.pem application.p12 application.rdb
+    rm -f ca.crt tls.crt tls.key ${USER}.pem ${USER}.p12 ${USER}.rdb
 fi

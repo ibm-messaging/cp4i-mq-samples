@@ -16,7 +16,7 @@ if [[ $# > 0 ]]; then
 fi
 
 # Ensure we start fresh
-rm -f ca.crt tls.crt tls.key application.*
+rm -f ca.crt tls.crt tls.key ${USER}.*
 
 CLIENT_CERTIFICATE_SECRET=qm-${QMNAME}-${USER}-client
 echo "CLIENT_CERTIFICATE_SECRET=${CLIENT_CERTIFICATE_SECRET}"

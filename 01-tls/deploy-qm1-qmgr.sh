@@ -82,7 +82,7 @@ spec:
           name: qmgr
   version: 9.3.0.0-r2
   web:
-    enabled: false
+    enabled: true
   pki:
     keys:
       - name: example

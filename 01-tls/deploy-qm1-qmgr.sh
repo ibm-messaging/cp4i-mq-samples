@@ -61,7 +61,7 @@ metadata:
 spec:
   license:
     accept: true
-    license: L-RJON-CD3JKX
+    license: L-VTPK-22YZPK
     use: NonProduction
   queueManager:
     name: QM1
@@ -80,7 +80,7 @@ spec:
             - name: MQSNOAUT
               value: 'yes'
           name: qmgr
-  version: 9.3.0.0-r2
+  version: 9.3.4.1-r1
   web:
     enabled: true
   pki:

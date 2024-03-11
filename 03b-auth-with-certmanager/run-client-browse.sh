@@ -8,8 +8,10 @@
 #
 
 # Find the queue manager host name
+NAMESPACE=cp4i
+QMNAME=qmadmin
 
-qmhostname=`oc get route -n cp4i qm1-ibm-mq-qm -o jsonpath="{.spec.host}"`
+qmhostname=`oc get route -n ${NAMESPACE} ${QMNAME}-ibm-mq-qm -o jsonpath="{.spec.host}"`
 echo $qmhostname
 
 
@@ -24,7 +26,7 @@ cat > ccdt.json << EOF
     "channel":
     [
         {
-            "name": "QM1CHL",
+            "name": "MTLS.SVRCONN",
             "clientConnection":
             {
                 "connection":
@@ -34,7 +36,7 @@ cat > ccdt.json << EOF
                         "port": 443
                     }
                 ],
-                "queueManager": "QM1"
+                "queueManager": "${QMNAME}"
             },
             "transmissionSecurity":
             {
@@ -49,23 +51,14 @@ EOF
 # Set environment variables for the client
 
 export MQCCDTURL=ccdt.json
-
+export MQSSLKEYR=app1
 # check:
 echo MQCCDTURL=$MQCCDTURL
 ls -l $MQCCDTURL
-
-if [[ $(uname -m) == 'arm64' ]]; then
-    export MQSSLKEYR=$(pwd)/app.pem
-    echo MQSSLKEYR=$MQSSLKEYR
-    ls -l $MQSSLKEYR
-else
-    export MQSSLKEYR=app1key
-    echo MQSSLKEYR=$MQSSLKEYR
-    ls -l $MQSSLKEYR.*
-fi
-
+echo MQSSLKEYR=$MQSSLKEYR
+ls -l $MQSSLKEYR.*
 export MQCLNTCF=$(pwd)/client.ini
 
 # Get messages from the queue
 
-amqsgetc Q1 QM1
+amqsbcgc Q1 ${QMNAME}

@@ -8,8 +8,12 @@
 #
 
 # Find the queue manager host name
+NAMESPACE=cp4i
 
-qmhostname=`oc get route -n cp4i qm1-ibm-mq-qm -o jsonpath="{.spec.host}"`
+# Make sure the following name is good for both a CR and and MQ name
+MS_NAME=test
+
+qmhostname=`oc get route -n ${NAMESPACE} ${MS_NAME}-ibm-mq-qm -o jsonpath="{.spec.host}"`
 echo $qmhostname
 
 
@@ -24,7 +28,7 @@ cat > ccdt.json << EOF
     "channel":
     [
         {
-            "name": "QM1CHL",
+            "name": "MTLS.SVRCONN",
             "clientConnection":
             {
                 "connection":
@@ -34,7 +38,7 @@ cat > ccdt.json << EOF
                         "port": 443
                     }
                 ],
-                "queueManager": "QM1"
+                "queueManager": "${MS_NAME}"
             },
             "transmissionSecurity":
             {
@@ -49,23 +53,16 @@ EOF
 # Set environment variables for the client
 
 export MQCCDTURL=ccdt.json
-
+export MQSSLKEYR=app1
 # check:
 echo MQCCDTURL=$MQCCDTURL
 ls -l $MQCCDTURL
-
-if [[ $(uname -m) == 'arm64' ]]; then
-    export MQSSLKEYR=$(pwd)/app.pem
-    echo MQSSLKEYR=$MQSSLKEYR
-    ls -l $MQSSLKEYR
-else
-    export MQSSLKEYR=app1key
-    echo MQSSLKEYR=$MQSSLKEYR
-    ls -l $MQSSLKEYR.*
-fi
-
+echo MQSSLKEYR=$MQSSLKEYR
+ls -l $MQSSLKEYR.*
 export MQCLNTCF=$(pwd)/client.ini
 
-# Get messages from the queue
+# Put messages to the queue
 
-amqsgetc Q1 QM1
+echo "Test message 1" | amqsputc Q1 ${MS_NAME}
+echo "Test message 2" | amqsputc Q1 ${MS_NAME}
+

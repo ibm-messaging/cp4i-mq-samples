@@ -11,6 +11,10 @@
 
 openssl req -newkey rsa:2048 -nodes -keyout qm1.key -subj "/CN=qm1" -x509 -days 3650 -out qm1.crt
 
+# Copy the queue manager certificate into a pem for the client
+cat qm1.crt > app.pem
+cp app.pem /Users/danielpink/Documents/git/cp4i/cp4i-navigator-operator
+
 # Create the client key database:
 
 runmqakm -keydb -create -db app1key.kdb -pw password -type cms -stash
@@ -22,6 +26,10 @@ runmqakm -cert -add -db app1key.kdb -label qm1cert -file qm1.crt -format ascii -
 # Check. List the database certificates:
 
 runmqakm -cert -list -db app1key.kdb -stashed
+cp app1key.kdb /Users/danielpink/Documents/git/cp4i/cp4i-navigator-operator
+cp app1key.sth /Users/danielpink/Documents/git/cp4i/cp4i-navigator-operator
+
+
 
 # Create TLS Secret for the Queue Manager
 
@@ -43,26 +51,6 @@ EOF
 
 oc apply -n cp4i -f qm1-configmap.yaml
 
-# Create the required route for SNI
-
-cat > qm1chl-route.yaml << EOF
-apiVersion: route.openshift.io/v1
-kind: Route
-metadata:
-  name: example-01-qm1-route
-spec:
-  host: qm1chl.chl.mq.ibm.com
-  to:
-    kind: Service
-    name: qm1-ibm-mq
-  port:
-    targetPort: 1414
-  tls:
-    termination: passthrough
-EOF
-
-oc apply -n cp4i -f qm1chl-route.yaml
-
 # Deploy the queue manager
 
 cat > qm1-qmgr.yaml << EOF
@@ -73,7 +61,7 @@ metadata:
 spec:
   license:
     accept: true
-    license: L-RJON-CD3JKX
+    license: L-VTPK-22YZPK
     use: NonProduction
   queueManager:
     name: QM1
@@ -92,9 +80,9 @@ spec:
             - name: MQSNOAUT
               value: 'yes'
           name: qmgr
-  version: 9.3.0.0-r2
+  version: 9.3.4.1-r1
   web:
-    enabled: false
+    enabled: true
   pki:
     keys:
       - name: example

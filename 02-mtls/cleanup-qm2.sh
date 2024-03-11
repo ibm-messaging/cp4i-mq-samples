@@ -15,13 +15,9 @@ rm qm2-qmgr.yaml
 oc delete -n cp4i cm example-02-qm2-configmap
 rm qm2-configmap.yaml
 
-# delete route
-oc delete -n cp4i route example-02-qm2-route
-rm qm2chl-route.yaml
-
 # delete secrets
 oc delete -n cp4i secret example-02-qm2-secret
 oc delete -n cp4i secret example-02-app1-secret
 
 # delete files
-rm qm2.crt qm2.key app1key.* app1.* ccdt.json 
+rm qm2.crt qm2.key app1key.* app1.* ccdt.json app.pem
